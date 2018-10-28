@@ -15,6 +15,7 @@ gem 'bootsnap',                '>= 1.1.0', require: false
 gem 'devise',                  '~> 4.5'
 
 group :development, :test do
+  gem 'factory_bot_rails',     '~> 4.11', '>= 4.11.1'
   gem 'pry-byebug',            '~> 3.6'
   gem 'rubocop-rails_config',  '~> 0.2.5'
 end
@@ -31,7 +32,7 @@ end
 group :test do
   gem 'capybara',              '~> 3.10'
   gem 'database_cleaner',      '~> 1.7'
-  gem 'rspec-rails',           '~> 3.8', '>= 3.8.1'
+  gem 'rspec-rails',           '~> 3.8',  '>= 3.8.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
