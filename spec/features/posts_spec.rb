@@ -23,6 +23,10 @@ RSpec.feature "Posts", type: :feature do
     end
 
     it "can be created from new form page" do
+      user = create(:user)
+
+      login_as(user)
+
       visit new_post_path
 
       fill_in "post[date]",      with: Time.zone.now
@@ -31,6 +35,21 @@ RSpec.feature "Posts", type: :feature do
       click_on "Save"
 
       expect(page).to have_content("Some rationale")
+    end
+
+    it "will have a user associated" do
+      user = create(:user)
+
+      login_as(user)
+
+      visit new_post_path
+
+      fill_in "post[date]",      with: Time.zone.now
+      fill_in "post[rationale]", with: "user_association"
+
+      click_on "Save"
+
+      expect(user.posts.last.rationale).to eq("user_association")
     end
   end
 end

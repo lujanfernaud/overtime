@@ -27,6 +27,8 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:date, :rationale)
+      params.require(:post)
+            .permit(:date, :rationale)
+            .merge(user_id: current_user.id)
     end
 end
