@@ -15,8 +15,10 @@ gem 'bootsnap',                '>= 1.1.0', require: false
 gem 'devise',                  '~> 4.5'
 
 group :development, :test do
+  gem 'awesome_print',         '~> 1.8'
   gem 'factory_bot_rails',     '~> 4.11', '>= 4.11.1'
   gem 'pry-byebug',            '~> 3.6'
+  gem 'pry-rails',             '~> 0.3.6'
   gem 'rubocop-rails_config',  '~> 0.2.5'
 end
 
