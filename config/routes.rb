@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   root "statics#index"
 
-  resources :posts, only: [:index]
+  resources :posts, only: [:index, :show, :new, :create]
 end
