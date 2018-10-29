@@ -32,6 +32,16 @@ RSpec.feature "Posts", type: :feature do
     end
   end
 
+  describe "new post" do
+    it "has a link from the home page" do
+      visit root_path
+
+      click_link "new-post-link"
+
+      expect(page.status_code).to eq(200)
+    end
+  end
+
   describe "creation" do
     it "has a new form that can be reached" do
       visit new_post_path
