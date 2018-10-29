@@ -6,7 +6,7 @@
     <%= post.date %>
   </td>
   <td>
-    <%= post.user.first_name %> <%= post.user.last_name %>
+    <%= post.user.full_name_with_comma %>
   </td>
   <td>
     <%= post.rationale.truncate(49) %>
