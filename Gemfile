@@ -14,6 +14,10 @@ gem 'jbuilder',                '~> 2.5'
 gem 'bootsnap',                '>= 1.1.0', require: false
 gem 'devise',                  '~> 4.5'
 
+# Bootstrap.
+gem 'bootstrap',               '~> 4.1', '>= 4.1.3'
+gem 'jquery-rails',            '~> 4.3', '>= 4.3.3'
+
 group :development, :test do
   gem 'awesome_print',         '~> 1.8'
   gem 'factory_bot_rails',     '~> 4.11', '>= 4.11.1'
