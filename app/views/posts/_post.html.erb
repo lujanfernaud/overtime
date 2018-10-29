@@ -1,4 +1,4 @@
-<tr class="">
+<tr class="post_<%= post.id %>">
   <td>
     <%= post.id %>
   </td>
@@ -10,5 +10,9 @@
   </td>
   <td>
     <%= post.rationale.truncate(49) %>
+  </td>
+  <td>
+    <%= link_to "Edit", edit_post_path(post),
+      class: "btn btn-outline-primary" %>
   </td>
 </tr>

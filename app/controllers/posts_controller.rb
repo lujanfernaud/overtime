@@ -11,6 +11,10 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  def edit
+    @post = set_post
+  end
+
   def create
     @post = Post.new(post_params)
 
@@ -18,6 +22,16 @@ class PostsController < ApplicationController
       redirect_to post_path(@post), notice: "Post created successfully."
     else
       render :new
+    end
+  end
+
+  def update
+    @post = set_post
+
+    if @post.update(post_params)
+      redirect_to posts_path, notice: "Post updated."
+    else
+      render :edit
     end
   end
 
