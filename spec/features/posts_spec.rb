@@ -9,9 +9,26 @@ RSpec.feature "Posts", type: :feature do
     end
 
     it "has title of 'Posts'" do
+      user = create(:user)
+
+      login_as(user)
+
       visit posts_path
 
       expect(page).to have_content "Posts"
+    end
+
+    it "has a list of posts" do
+      user  = create(:user)
+      post1 = create(:post, user: user, rationale: "Test Post 1")
+      post2 = create(:post, user: user, rationale: "Test Post 2")
+
+      login_as(user)
+
+      visit posts_path
+
+      expect(page).to have_content(post1.rationale)
+      expect(page).to have_content(post2.rationale)
     end
   end
 
