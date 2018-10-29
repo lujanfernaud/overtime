@@ -109,4 +109,22 @@ RSpec.feature "Posts", type: :feature do
       expect(page).to have_content("Updated rationale.")
     end
   end
+
+  describe "delete" do
+    before do
+      user = create(:user)
+
+      login_as(user)
+    end
+
+    it "can be deleted" do
+      post = create(:post)
+
+      visit posts_path
+
+      within ".post_#{post.id}" do
+        click_link "Delete"
+      end
+    end
+  end
 end
