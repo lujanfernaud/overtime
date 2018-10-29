@@ -18,6 +18,9 @@ gem 'devise',                  '~> 4.5'
 gem 'bootstrap',               '~> 4.1', '>= 4.1.3'
 gem 'jquery-rails',            '~> 4.3', '>= 4.3.3'
 
+# Growl notifications.
+gem 'gritter',                 '~> 1.2'
+
 group :development, :test do
   gem 'awesome_print',         '~> 1.8'
   gem 'factory_bot_rails',     '~> 4.11', '>= 4.11.1'
