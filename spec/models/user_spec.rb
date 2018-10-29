@@ -14,4 +14,18 @@ RSpec.describe User, type: :model do
       expect(user).to_not be_valid
     end
   end
+
+  describe "#full_name_with_comma" do
+    it "shows full name with last name first and comma separator" do
+      user = build(:user, first_name: "Yao", last_name: "Dao")
+
+      expect(user.full_name_with_comma).to eq("Dao, Yao")
+    end
+
+    it "shows full name capitalized" do
+      user = build(:user, first_name: "yao", last_name: "dao")
+
+      expect(user.full_name_with_comma).to eq("Dao, Yao")
+    end
+  end
 end

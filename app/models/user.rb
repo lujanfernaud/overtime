@@ -5,4 +5,8 @@ class User < ApplicationRecord
   has_many :posts
 
   validates_presence_of :first_name, :last_name
+
+  def full_name_with_comma
+    "#{last_name.capitalize}, #{first_name.capitalize}"
+  end
 end
