@@ -107,3 +107,7 @@ guard 'livereload' do
   watch(%r{app/helpers/.+\.rb})
   watch(%r{config/locales/.+\.yml})
 end
+
+guard :rails_best_practices do
+  watch(%r{^app/(.+)\.rb$})
+end
