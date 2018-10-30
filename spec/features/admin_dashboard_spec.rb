@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "AdminDashboards", type: :feature do
+RSpec.feature "AdminDashboard", type: :feature do
   it "does not allow users to access without being signed in" do
     visit admin_root_path
 
