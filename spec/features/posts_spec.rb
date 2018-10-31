@@ -94,26 +94,43 @@ RSpec.feature "Posts", type: :feature do
   end
 
   describe "edition" do
-    before do
+    it "can be reached by clicking 'edit' on the index page" do
       user = create(:user)
+      post = create(:post, user: user)
 
       login_as(user)
 
-      @post = create(:post)
-    end
-
-    it "can be reached by clicking 'edit' on the index page" do
       visit posts_path
 
-      within ".post_#{@post.id}" do
+      within ".post_#{post.id}" do
         click_link "Edit"
       end
 
       expect(page.status_code).to eq(200)
     end
 
-    it "can be edited" do
-      visit edit_post_path(@post)
+    it "can be edited by author" do
+      user = create(:user)
+      post = create(:post, user: user)
+
+      login_as(user)
+
+      visit edit_post_path(post)
+
+      fill_in "post[rationale]", with: "Updated rationale."
+
+      click_on "Save"
+
+      expect(page).to have_content("Updated rationale.")
+    end
+
+    it "can be edited by admin" do
+      user = create(:user, :admin)
+      post = create(:post)
+
+      login_as(user)
+
+      visit edit_post_path(post)
 
       fill_in "post[rationale]", with: "Updated rationale."
 

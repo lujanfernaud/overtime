@@ -1,10 +1,12 @@
 class PostsController < ApplicationController
+  before_action :find_post, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_if_not_authorized, only: :edit
+
   def index
     @posts = Post.all
   end
 
   def show
-    @post = set_post
   end
 
   def new
@@ -12,7 +14,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = set_post
   end
 
   def create
@@ -26,8 +27,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = set_post
-
     if @post.update(post_params)
       redirect_to posts_path, notice: "Post updated."
     else
@@ -36,8 +35,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = set_post
-
     @post.destroy
 
     redirect_to posts_path, notice: "The post was deleted."
@@ -45,8 +42,15 @@ class PostsController < ApplicationController
 
   private
 
-    def set_post
-      Post.find(params[:id])
+    def find_post
+      @post = Post.find(params[:id])
+    end
+
+    def redirect_if_not_authorized
+      unless current_user.admin? || current_user.author?(@post)
+        flash[:notice] = "You are not authorized to visit this resource."
+        redirect_to root_path
+      end
     end
 
     def post_params_with_current_user

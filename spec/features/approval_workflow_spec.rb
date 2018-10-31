@@ -1,17 +1,12 @@
 require 'rails_helper'
 
 RSpec.feature "ApprovalWorkflows", type: :feature do
-  before do
-    admin = build(:user, :admin)
-    login_as(admin)
-  end
-
   describe "edit" do
     it "has a status that can be edited on the form" do
-      admin = create(:user, :admin)
-      post  = create(:post)
+      user = create(:user)
+      post = create(:post, user: user)
 
-      login_as(admin)
+      login_as(user)
 
       visit edit_post_path(post)
 
@@ -22,6 +17,30 @@ RSpec.feature "ApprovalWorkflows", type: :feature do
       within ".post_#{post.id}" do
         expect(page).to have_content("Approved")
       end
+    end
+
+    it "can be edited by an admin" do
+      admin = create(:user, :admin)
+      post  = create(:post)
+
+      login_as(admin)
+
+      visit edit_post_path(post)
+
+      expect(current_path).to eq(edit_post_path(post))
+      expect(page).to have_css(".status-selector")
+    end
+
+    it "cannot be edited by a non admin" do
+      user = create(:user)
+      post = create(:post)
+
+      login_as(user)
+
+      visit edit_post_path(post)
+
+      expect(current_path).to_not eq(edit_post_path(post))
+      expect(page).to_not have_css(".status-selector")
     end
   end
 end
