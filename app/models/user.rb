@@ -27,6 +27,10 @@ class User < ApplicationRecord
     type == "AdminUser"
   end
 
+  def guest?
+    type == "Guest"
+  end
+
   def author?(post)
     post.user == self
   end
