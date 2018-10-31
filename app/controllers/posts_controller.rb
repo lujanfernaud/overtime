@@ -16,7 +16,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = Post.new(post_params_with_current_user)
 
     if @post.save
       redirect_to post_path(@post), notice: "Post created successfully."
@@ -49,9 +49,11 @@ class PostsController < ApplicationController
       Post.find(params[:id])
     end
 
+    def post_params_with_current_user
+      post_params.merge(user_id: current_user.id)
+    end
+
     def post_params
-      params.require(:post)
-            .permit(:date, :rationale)
-            .merge(user_id: current_user.id)
+      params.require(:post).permit(:date, :rationale, :status)
     end
 end

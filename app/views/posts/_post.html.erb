@@ -12,6 +12,9 @@
     <%= post.rationale.truncate(49) %>
   </td>
   <td>
+    <%= post.status.capitalize %>
+  </td>
+  <td>
     <%= link_to "Edit", edit_post_path(post),
       class: "btn btn-outline-primary" %>
   </td>

@@ -30,6 +30,19 @@ RSpec.feature "Posts", type: :feature do
       expect(page).to have_content(post1.rationale)
       expect(page).to have_content(post2.rationale)
     end
+
+    it "shows post status" do
+      user = create(:user)
+      create(:post, :approved, user: user)
+      create(:post, :rejected, user: user)
+
+      login_as(user)
+
+      visit posts_path
+
+      expect(page).to have_content("Approved")
+      expect(page).to have_content("Rejected")
+    end
   end
 
   describe "new post" do
