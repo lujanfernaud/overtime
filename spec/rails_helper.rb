@@ -6,6 +6,13 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 
 require 'rspec/rails'
 require 'capybara/rails'
+require 'capybara/rspec'
+
+# Allow CSS and JavaScript to be loaded when we use save_and_open_page.
+# The development server must be running at localhost:3000 as specified below.
+# Assets need to be precompiled.
+# https://github.com/jnicklas/capybara/pull/958
+Capybara.asset_host = "http://localhost:3000"
 
 include Warden::Test::Helpers
 Warden.test_mode!
