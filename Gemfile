@@ -15,6 +15,7 @@ gem 'bootsnap',                '>= 1.1.0', require: false
 gem 'devise',                  '~> 4.5'
 gem 'administrate',            '~> 0.11.0'
 gem 'administrate-field-enum', '~> 0.0.7'
+gem 'pundit',                  '~> 2.0'
 
 # Bootstrap.
 gem 'bootstrap',               '~> 4.1', '>= 4.1.3'
