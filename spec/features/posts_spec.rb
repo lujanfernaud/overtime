@@ -47,6 +47,10 @@ RSpec.feature "Posts", type: :feature do
 
   describe "new post" do
     it "has a link from the home page" do
+      user = create(:user)
+
+      login_as(user)
+
       visit root_path
 
       click_link "new-post-link"
