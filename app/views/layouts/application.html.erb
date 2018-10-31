@@ -20,11 +20,6 @@
       </div>
     </div>
 
-  <%= js add_gritter(
-    flash[:notice],
-    title: "Overtime Notification",
-    sticky: false,
-    time: 4000) %>
-
+    <%= render "shared/alerts" %>
   </body>
 </html>
