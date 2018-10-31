@@ -1,4 +1,4 @@
-<tr class="post_<%= post.id %>">
+<tr class="post post_<%= post.id %>">
   <td>
     <%= post.id %>
   </td>
@@ -16,12 +16,12 @@
   </td>
   <td class="text-right pr-0">
     <%= link_to "Edit", edit_post_path(post),
-      class: "btn btn-outline-primary" %>
+      class: "btn btn-outline-primary edit-post-button" %>
   </td>
   <td class="text-right pl-0">
     <%= link_to "Delete", post_path(post),
       method: :delete,
       data: { confirm: "Are you sure to delete this entry?" },
-      class: "btn btn-outline-danger" %>
+      class: "btn btn-outline-danger delete-post-button" %>
   </td>
 </tr>

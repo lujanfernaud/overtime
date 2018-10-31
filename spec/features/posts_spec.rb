@@ -31,6 +31,30 @@ RSpec.feature "Posts", type: :feature do
       expect(page).to have_content(post2.rationale)
     end
 
+    it "only shows user's own posts" do
+      user = create(:user)
+      create_list(:post, 3, user: user)
+      create_list(:post, 22)
+
+      login_as(user)
+
+      visit posts_path
+
+      expect(page).to have_css(".post", count: 3)
+    end
+
+    it "shows all posts to admins" do
+      user = create(:user, :admin)
+      create_list(:post, 3, user: user)
+      create_list(:post, 22)
+
+      login_as(user)
+
+      visit posts_path
+
+      expect(page).to have_css(".post", count: 25)
+    end
+
     it "shows post status" do
       user = create(:user)
       create(:post, :approved, user: user)
@@ -145,14 +169,11 @@ RSpec.feature "Posts", type: :feature do
   end
 
   describe "delete" do
-    before do
+    it "can be deleted" do
       user = create(:user)
+      post = create(:post, user: user)
 
       login_as(user)
-    end
-
-    it "can be deleted" do
-      post = create(:post)
 
       visit posts_path
 

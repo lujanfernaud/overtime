@@ -2,7 +2,11 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.all
+    if current_user.admin?
+      @posts = Post.all
+    else
+      @posts = current_user.posts
+    end
   end
 
   def show
