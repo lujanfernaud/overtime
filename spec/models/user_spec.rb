@@ -15,6 +15,20 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "#admin?" do
+    it "returns 'true' for an admin" do
+      user = build_stubbed(:user, :admin)
+
+      expect(user.admin?).to be(true)
+    end
+
+    it "returns 'false' for a non admin" do
+      user = build_stubbed(:user)
+
+      expect(user.admin?).to be(false)
+    end
+  end
+
   describe "#full_name_with_comma" do
     it "shows full name with last name first and comma separator" do
       user = build_stubbed(:user, first_name: "Yao", last_name: "Dao")
