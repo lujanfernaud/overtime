@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update, :destroy]
-  before_action :redirect_if_not_authorized, only: :edit
 
   def index
     @posts = Post.all
@@ -14,6 +13,7 @@ class PostsController < ApplicationController
   end
 
   def edit
+    authorize @post
   end
 
   def create
@@ -44,13 +44,6 @@ class PostsController < ApplicationController
 
     def find_post
       @post = Post.find(params[:id])
-    end
-
-    def redirect_if_not_authorized
-      unless current_user.admin? || current_user.author?(@post)
-        flash[:notice] = "You are not authorized to visit this resource."
-        redirect_to root_path
-      end
     end
 
     def post_params_with_current_user
