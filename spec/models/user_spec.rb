@@ -29,6 +29,22 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "#author?" do
+    it "returns 'true' for post author" do
+      user = create(:user)
+      post = create(:post, user: user)
+
+      expect(user.author?(post)).to be(true)
+    end
+
+    it "returns 'false' for non post author" do
+      user = create(:user)
+      post = create(:post)
+
+      expect(user.author?(post)).to be(false)
+    end
+  end
+
   describe "#full_name_with_comma" do
     it "shows full name with last name first and comma separator" do
       user = build_stubbed(:user, first_name: "Yao", last_name: "Dao")

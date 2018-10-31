@@ -10,6 +10,10 @@ class User < ApplicationRecord
     type == "AdminUser"
   end
 
+  def author?(post)
+    post.user == self
+  end
+
   def full_name_with_comma
     "#{last_name.capitalize}, #{first_name.capitalize}"
   end
