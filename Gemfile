@@ -32,6 +32,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'annotate',                   '~> 2.7', '>= 2.7.4'
   gem 'guard',                      '~> 2.14',  '>= 2.14.2'
   gem 'guard-livereload',           '~> 2.5',   '>= 2.5.2', require: false
   gem 'guard-rails_best_practices',
