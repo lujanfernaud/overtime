@@ -1,5 +1,5 @@
 class PostPolicy < ApplicationPolicy
   def update?
-    user.admin? || user.author?(record)
+    user.authorized_to_edit?(record)
   end
 end

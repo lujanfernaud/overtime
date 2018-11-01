@@ -42,5 +42,34 @@ RSpec.feature "ApprovalWorkflows", type: :feature do
       expect(current_path).to_not eq(edit_post_path(post))
       expect(page).to_not have_css(".status-selector")
     end
+
+    it "cannot be edited by author if the post was approved by an admin" do
+      admin = create(:user, :admin)
+      user  = create(:user)
+      post  = create(:post, user: user)
+
+      login_as(admin)
+
+      visit edit_post_path(post)
+
+      choose "post_status_approved"
+
+      click_on "Save"
+
+      logout
+
+      login_as(user)
+
+      visit posts_path
+
+      within ".post_#{post.id}" do
+        expect(page).not_to have_content("Edit")
+        expect(page).not_to have_content("Delete")
+      end
+
+      visit edit_post_path(post)
+
+      expect(current_path).to eq(root_path)
+    end
   end
 end
