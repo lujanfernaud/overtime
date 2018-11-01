@@ -75,4 +75,35 @@ RSpec.describe User, type: :model do
       expect(user.full_name_with_comma).to eq("Dao, Yao")
     end
   end
+
+  describe "#authorized_to_edit?" do
+    it "returns 'true' when the post has a status of 'submitted'" do
+      user = create(:user)
+      post = create(:post, user: user)
+
+      expect(post.status).to eq("submitted")
+      expect(user.authorized_to_edit?(post)).to be(true)
+    end
+
+    it "returns 'false' when the post doesn't have a status of 'submitted'" do
+      user = create(:user)
+      post = create(:post, user: user)
+
+      post.approved!
+
+      expect(post.status).to eq("approved")
+      expect(user.authorized_to_edit?(post)).to be(false)
+    end
+
+    it "returns 'true' when the user is an admin" do
+      admin = create(:user, :admin)
+      user  = create(:user)
+      post  = create(:post, user: user)
+
+      post.approved!
+
+      expect(post.status).to eq("approved")
+      expect(admin.authorized_to_edit?(post)).to be(true)
+    end
+  end
 end

@@ -35,6 +35,12 @@ class User < ApplicationRecord
     post.user == self
   end
 
+  def authorized_to_edit?(post)
+    return true if admin?
+
+    author?(post) && post.submitted?
+  end
+
   def full_name_with_comma
     "#{last_name.capitalize}, #{first_name.capitalize}"
   end
