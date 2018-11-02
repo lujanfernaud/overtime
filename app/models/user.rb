@@ -38,7 +38,7 @@ class User < ApplicationRecord
   def authorized_to_edit?(post)
     return true if admin?
 
-    author?(post) && post.submitted?
+    author?(post) && !post.approved?
   end
 
   def full_name_with_comma
