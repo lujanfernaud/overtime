@@ -67,6 +67,39 @@ RSpec.feature "Posts", type: :feature do
       expect(page).to have_content("Approved")
       expect(page).to have_content("Rejected")
     end
+
+    it "post 'submitted' status has badge" do
+      user = create(:user)
+      create(:post, user: user)
+
+      login_as(user)
+
+      visit posts_path
+
+      expect(page).to have_css(".badge-primary")
+    end
+
+    it "post 'approved' status has badge" do
+      user = create(:user)
+      create(:post, :approved, user: user)
+
+      login_as(user)
+
+      visit posts_path
+
+      expect(page).to have_css(".badge-success")
+    end
+
+    it "post 'rejected' status has badge" do
+      user = create(:user)
+      create(:post, :rejected, user: user)
+
+      login_as(user)
+
+      visit posts_path
+
+      expect(page).to have_css(".badge-danger")
+    end
   end
 
   describe "new post" do

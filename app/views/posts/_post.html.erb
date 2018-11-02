@@ -1,26 +1,28 @@
 <tr class="post post_<%= post.id %>">
-  <td>
+  <td class="align-middle">
     <%= post.id %>
   </td>
-  <td>
+  <td class="align-middle">
     <%= post.date %>
   </td>
-  <td>
+  <td class="align-middle">
     <%= post.user.full_name_with_comma %>
   </td>
-  <td>
+  <td class="align-middle">
     <%= post.rationale.truncate(49) %>
   </td>
-  <td>
-    <%= post.status.capitalize %>
+  <td class="align-middle">
+    <span class="badge <%= status_badge(post) %> p-2">
+      <%= post.status.capitalize %>
+    </span>
   </td>
-  <td class="text-right pr-0">
+  <td class="align-middle text-right pr-0">
     <% if current_user.authorized_to_edit?(post) %>
       <%= link_to "Edit", edit_post_path(post),
         class: "btn btn-outline-primary edit-post-button" %>
     <% end %>
   </td>
-  <td class="text-right pl-0">
+  <td class="align-middle text-right pl-0">
     <% if current_user.authorized_to_edit?(post) %>
       <%= link_to "Delete", post_path(post),
         method: :delete,
