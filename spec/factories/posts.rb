@@ -14,9 +14,10 @@
 FactoryBot.define do
   factory :post do
     user
-    date      { Time.zone.now }
-    rationale { "Test rationale." }
-    status    { "submitted" }
+    date           { Time.zone.now }
+    rationale      { "Test rationale." }
+    overtime_hours { 3.5 }
+    status         { "submitted" }
 
     trait :approved do
       status { "approved" }

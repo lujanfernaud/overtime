@@ -50,9 +50,10 @@ end
   puts "Creating post #{post_number}..."
 
   Post.create!(
-    user:      User.all.where(type: nil).sample,
-    date:      Time.zone.now,
-    rationale: "Post #{post_number} rationale content."
+    user:           User.all.where(type: nil).sample,
+    date:           Time.zone.now,
+    rationale:      "Post #{post_number} rationale content.",
+    overtime_hours: 2.5
   )
 end
 

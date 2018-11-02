@@ -32,6 +32,18 @@ RSpec.describe Post, type: :model do
 
       expect(post).not_to be_valid
     end
+
+    it "cannot be created without overtime hours" do
+      post = build_stubbed(:post, overtime_hours: nil)
+
+      expect(post).not_to be_valid
+    end
+
+    it "cannot be created without overtime hours being bigger than 0.0" do
+      post = build_stubbed(:post, overtime_hours: 0.0)
+
+      expect(post).not_to be_valid
+    end
   end
 
   describe "#status" do

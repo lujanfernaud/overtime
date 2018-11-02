@@ -17,4 +17,5 @@ class Post < ApplicationRecord
   belongs_to :user
 
   validates_presence_of :date, :rationale
+  validates             :overtime_hours, numericality: { greater_than: 0.0 }
 end

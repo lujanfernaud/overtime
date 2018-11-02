@@ -130,12 +130,11 @@ RSpec.feature "Posts", type: :feature do
 
       visit new_post_path
 
-      fill_in "post[date]",      with: Time.zone.now
-      fill_in "post[rationale]", with: "Some rationale"
+      fill_in "post[date]",           with: Time.zone.now
+      fill_in "post[overtime_hours]", with: 1.5
+      fill_in "post[rationale]",      with: "Some rationale"
 
-      click_on "Save"
-
-      expect(page).to have_content("Some rationale")
+      expect { click_on "Save" }.to change(Post, :count).by(1)
     end
 
     it "will have a user associated" do
@@ -145,8 +144,9 @@ RSpec.feature "Posts", type: :feature do
 
       visit new_post_path
 
-      fill_in "post[date]",      with: Time.zone.now
-      fill_in "post[rationale]", with: "user_association"
+      fill_in "post[date]",           with: Time.zone.now
+      fill_in "post[overtime_hours]", with: 1.5
+      fill_in "post[rationale]",      with: "user_association"
 
       click_on "Save"
 
