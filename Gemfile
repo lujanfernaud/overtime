@@ -16,6 +16,7 @@ gem 'devise',                  '~> 4.5'
 gem 'administrate',            '~> 0.11.0'
 gem 'administrate-field-enum', '~> 0.0.7'
 gem 'pundit',                  '~> 2.0'
+gem 'twilio-ruby',             '~> 5.15', '>= 5.15.2'
 
 # Bootstrap.
 gem 'bootstrap',               '~> 4.1', '>= 4.1.3'
