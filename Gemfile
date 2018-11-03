@@ -17,6 +17,7 @@ gem 'administrate',            '~> 0.11.0'
 gem 'administrate-field-enum', '~> 0.0.7'
 gem 'pundit',                  '~> 2.0'
 gem 'twilio-ruby',             '~> 5.15', '>= 5.15.2'
+gem 'figaro',                  '~> 1.1',  '>= 1.1.1'
 
 # Bootstrap.
 gem 'bootstrap',               '~> 4.1', '>= 4.1.3'
@@ -34,9 +35,9 @@ group :development, :test do
 end
 
 group :development do
-  gem 'annotate',                   '~> 2.7', '>= 2.7.4'
-  gem 'guard',                      '~> 2.14',  '>= 2.14.2'
-  gem 'guard-livereload',           '~> 2.5',   '>= 2.5.2', require: false
+  gem 'annotate',                   '~> 2.7',  '>= 2.7.4'
+  gem 'guard',                      '~> 2.14', '>= 2.14.2'
+  gem 'guard-livereload',           '~> 2.5',  '>= 2.5.2', require: false
   gem 'guard-rails_best_practices',
     github: 'logankoester/guard-rails_best_practices', require: false
   gem 'guard-rspec',                '~> 4.7',   '>= 4.7.3', require: false
@@ -50,7 +51,7 @@ group :test do
   gem 'capybara',              '~> 3.10'
   gem 'database_cleaner',      '~> 1.7'
   gem 'launchy',               '~> 2.4', '>= 2.4.3'
-  gem 'rspec-rails',           '~> 3.8',  '>= 3.8.1'
+  gem 'rspec-rails',           '~> 3.8', '>= 3.8.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
