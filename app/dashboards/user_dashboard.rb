@@ -11,6 +11,7 @@ class UserDashboard < Administrate::BaseDashboard
     posts: Field::HasMany.with_options(searchable: false),
     id: Field::Number.with_options(searchable: false),
     email: Field::String.with_options(searchable: true),
+    phone: Field::String.with_options(searchable: false),
     encrypted_password: Field::String.with_options(searchable: false),
     reset_password_token: Field::String.with_options(searchable: false),
     reset_password_sent_at: Field::DateTime.with_options(searchable: false),
@@ -37,6 +38,7 @@ class UserDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :email,
+    :phone,
     :first_name,
     :last_name,
     :type,
@@ -49,6 +51,7 @@ class UserDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :email,
+    :phone,
     :first_name,
     :last_name,
   ].freeze

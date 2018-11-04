@@ -30,6 +30,12 @@ RSpec.describe User, type: :model do
 
       expect(user).to_not be_valid
     end
+
+    it "cannot be created without a phone" do
+      user = build_stubbed(:user, phone: nil)
+
+      expect(user).to_not be_valid
+    end
   end
 
   describe "#admin?" do

@@ -12,7 +12,8 @@ User.create!(
   email:                 "admin@test.test",
   password:              "password",
   password_confirmation: "password",
-  type:                  "AdminUser"
+  type:                  "AdminUser",
+  phone:                 "1234567890"
 )
 
 
@@ -22,10 +23,10 @@ User.create!(
 
 
 users = [
-  OpenStruct.new(first_name: "Sandi", last_name: "Metz"),
+  OpenStruct.new(first_name: "Sandi",    last_name: "Metz"),
   OpenStruct.new(first_name: "Yukihiro", last_name: "Matsumoto"),
-  OpenStruct.new(first_name: "Avdi", last_name: "Grimm"),
-  OpenStruct.new(first_name: "Jim", last_name: "Weirich")
+  OpenStruct.new(first_name: "Avdi",     last_name: "Grimm"),
+  OpenStruct.new(first_name: "Jim",      last_name: "Weirich")
 ]
 
 users.each do |user|
@@ -36,7 +37,8 @@ users.each do |user|
     last_name:             user.last_name,
     email:                 "#{user.first_name}.#{user.last_name}@test.test",
     password:              "password",
-    password_confirmation: "password"
+    password_confirmation: "password",
+    phone:                 "1234567890"
   )
 end
 
