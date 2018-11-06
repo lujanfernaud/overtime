@@ -16,12 +16,15 @@
 #
 
 class User < ApplicationRecord
+  PHONE_REGEX = /\A[0-9]{10}\z/
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   has_many :posts
 
   validates_presence_of :first_name, :last_name, :phone
+  validates_format_of   :phone, with: PHONE_REGEX
 
   def admin?
     type == "AdminUser"

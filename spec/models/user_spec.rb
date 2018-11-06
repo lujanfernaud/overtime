@@ -24,7 +24,9 @@ RSpec.describe User, type: :model do
 
       expect(user).to be_valid
     end
+  end
 
+  describe "validations" do
     it "cannot be created without first_name and last_name" do
       user = build_stubbed(:user, first_name: nil, last_name: nil)
 
@@ -35,6 +37,18 @@ RSpec.describe User, type: :model do
       user = build_stubbed(:user, phone: nil)
 
       expect(user).to_not be_valid
+    end
+
+    it "requires the phone to only contain integers" do
+      user = build_stubbed(:user, phone: "abcdefghjo")
+
+      expect(user).not_to be_valid
+    end
+
+    it "requires the phone to only have 10 characters" do
+      user = build_stubbed(:user, phone: 12345678901)
+
+      expect(user).not_to be_valid
     end
   end
 
